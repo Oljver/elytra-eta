@@ -3,6 +3,7 @@ package org.kybe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -10,6 +11,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.rusherhack.client.api.feature.hud.TextHudElement;
 import org.rusherhack.client.api.utils.ChatUtils;
@@ -127,11 +129,12 @@ public class ETAHud extends TextHudElement {
 
 		// Fetch the Unbreaking enchantment level on the Elytra. Thanks to rocoplays for getting the code via chatgpt.
 		// I swear chatgpt hates me :(.
-		Registry<Enchantment> enchantmentRegistry = mc.level.registryAccess().registry(Registries.ENCHANTMENT).orElseThrow();
-		Holder<Enchantment> unbreakingEnchantment = enchantmentRegistry.getHolderOrThrow(Enchantments.UNBREAKING);
+        // Had to rewrite it thanks mojang. But thanks to chatgpt for the code.
+        HolderLookup.RegistryLookup<Enchantment> enchantmentLookup = mc.level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        Holder<Enchantment> unbreakingEnchantment = enchantmentLookup.getOrThrow(Enchantments.UNBREAKING);
 
-		int unbreakingLevel = item.getEnchantments().getLevel(unbreakingEnchantment);
+        int unbreakingLevel = item.getEnchantments().getLevel(unbreakingEnchantment);
 
-		return ((item.getMaxDamage() - item.getDamageValue()) * (unbreakingLevel + 1)) - 1;
+        return ((item.getMaxDamage() - item.getDamageValue()) * (unbreakingLevel + 1)) - 1;
 	}
 }

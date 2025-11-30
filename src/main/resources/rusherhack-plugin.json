@@ -5,9 +5,10 @@
   "Description": "Elytra ETA",
   "Authors": [
     "kybe236",
-    "rocoplays"
+    "rocoplays",
+    "Oljver"
   ],
   "Minecraft-Versions": [
-    "1.21"
+    "1.21.4"
   ]
 }
