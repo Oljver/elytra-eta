@@ -1,24 +1,16 @@
 package org.kybe;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.rusherhack.client.api.feature.hud.TextHudElement;
-import org.rusherhack.client.api.utils.ChatUtils;
 import org.rusherhack.core.setting.NumberSetting;
-
-import java.awt.*;
-import java.time.Duration;
 
 public class ETAHud extends TextHudElement {
 
@@ -135,6 +127,6 @@ public class ETAHud extends TextHudElement {
 
         int unbreakingLevel = item.getEnchantments().getLevel(unbreakingEnchantment);
 
-        return ((item.getMaxDamage() - item.getDamageValue()) * (unbreakingLevel + 1)) - 1;
+        return (item.getMaxDamage() - item.getDamageValue() - 1) * (unbreakingLevel + 1);
 	}
 }
