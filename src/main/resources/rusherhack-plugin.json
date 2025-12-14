@@ -1,5 +1,5 @@
 {
-  "Plugin-Class": "org.kybe.Main",
+  "Plugin-Class": "org.kybe.ElytraETA",
   "Name": "Elytra ETA",
   "Version": "${plugin_version}",
   "Description": "Elytra ETA",
